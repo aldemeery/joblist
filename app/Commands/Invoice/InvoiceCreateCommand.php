@@ -46,7 +46,11 @@ class InvoiceCreateCommand extends Command
                     $invoice->id,
                 ));
 
-                return Command::SUCCESS;
+                if (P\confirm('Do you want to generate the invoice as PDF?', true)) {
+                    return $this->call('invoice:generate', ['invoice' => (string) $invoice->id]);
+                } else {
+                    return Command::SUCCESS;
+                }
             });
         } catch (Exception $e) {
             P\error($e->getMessage());
