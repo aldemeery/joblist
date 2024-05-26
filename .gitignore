@@ -1,0 +1,10 @@
+/vendor
+/.idea
+/.vscode
+/.cache
+/.vagrant
+/database/database.sqlite
+/builds
+/storage
+.phpunit.result.cache
+.env
