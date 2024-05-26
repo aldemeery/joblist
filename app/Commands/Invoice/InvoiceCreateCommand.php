@@ -102,8 +102,6 @@ class InvoiceCreateCommand extends Command
             ) {
                 $builder->fillUsingLatestInvoice();
                 $builder->setFilled(true);
-
-                $this->displayInvoiceData($builder->makeInvoice());
             }
 
             return $next($builder);
