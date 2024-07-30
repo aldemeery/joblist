@@ -48,9 +48,9 @@ class InvoiceCreateCommand extends Command
 
                 if (P\confirm('Do you want to generate the invoice as PDF?', true)) {
                     return $this->call('invoice:generate', ['invoice' => (string) $invoice->id]);
-                } else {
-                    return Command::SUCCESS;
                 }
+
+                return Command::SUCCESS;
             });
         } catch (Exception $e) {
             P\error($e->getMessage());
@@ -257,7 +257,7 @@ class InvoiceCreateCommand extends Command
             ->intro('Please provide the invoice details')
             ->text(
                 label: 'Number',
-                default: ($latestInvoice->number ?? 0) + 1,
+                default: (string) (($latestInvoice->number ?? 0) + 1),
                 required: true,
                 validate: [
                     'number' => [
@@ -277,7 +277,7 @@ class InvoiceCreateCommand extends Command
             )
             ->text(
                 label: 'Terms',
-                default: $latestInvoice?->net_terms,
+                default: (string) ($latestInvoice?->net_terms),
                 required: true,
                 validate: ['terms' => 'integer|min:0'],
                 name: 'net_terms',
