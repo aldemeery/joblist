@@ -102,7 +102,7 @@
             <!-- Invoice Summary -->
             <div class="w-full grid grid-cols-3 gap-x-10 p-5 px-10 text-slate-600">
                 <div class="w-full col-span-2">
-                    <p>{{ $invoice->notes }}</p>
+                    <p>{!! nl2br($invoice->notes) !!}</p>
                 </div>
                 <div class="w-full col-span-1">
                     <table class="w-full">
@@ -129,7 +129,7 @@
 
             <!-- Invoice Footer -->
             <div class="w-full py-5 px-10 bg-slate-100">
-                <p class="text-slate-600">{{ $invoice->payment_details }}</p>
+                <p class="text-slate-600">{!! nl2br($invoice->payment_details) !!}</p>
             </div>
             <!-- End Invoice Footer -->
         </div>
