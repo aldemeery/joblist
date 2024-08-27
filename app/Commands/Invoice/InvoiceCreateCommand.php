@@ -270,7 +270,7 @@ class InvoiceCreateCommand extends Command
             )
             ->text(
                 label: 'Date',
-                default: null === $latestInvoice ? null : $this->calculateDateUsing($latestInvoice)->format('Y-m-d'),
+                default: null === $latestInvoice ? '' : $this->calculateDateUsing($latestInvoice)->format('Y-m-d'),
                 required: true,
                 validate: ['date' => 'date_format:Y-m-d'],
                 name: 'date',
@@ -284,69 +284,69 @@ class InvoiceCreateCommand extends Command
             )
             ->text(
                 label: 'Issuer Address Line One',
-                default: $latestInvoice?->issuer_address->getLineOne(),
+                default: (string) $latestInvoice?->issuer_address->getLineOne(),
                 required: true,
                 validate: ['issuer_address_line_one' => 'string|max:255'],
                 name: 'issuer_address_line_one',
             )
             ->text(
                 label: 'Issuer Address Line Two',
-                default: $latestInvoice?->issuer_address->getLineTwo(),
+                default: (string) $latestInvoice?->issuer_address->getLineTwo(),
                 required: true,
                 validate: ['issuer_address_line_two' => 'string|max:255'],
                 name: 'issuer_address_line_two',
             )
             ->text(
                 label: 'Issuer Address Line Three',
-                default: $latestInvoice?->issuer_address->getLineThree(),
+                default: (string) $latestInvoice?->issuer_address->getLineThree(),
                 required: true,
                 validate: ['issuer_address_line_three' => 'string|max:255'],
                 name: 'issuer_address_line_three',
             )
             ->text(
                 label: 'Issuer Address Line Four',
-                default: $latestInvoice?->issuer_address->getLineFour(),
+                default: (string) $latestInvoice?->issuer_address->getLineFour(),
                 required: true,
                 validate: ['issuer_address_line_four' => 'string|max:255'],
                 name: 'issuer_address_line_four',
             )
             ->text(
                 label: 'Client Address Line One',
-                default: $latestInvoice?->client_address->getLineOne(),
+                default: (string) $latestInvoice?->client_address->getLineOne(),
                 required: true,
                 validate: ['client_address_line_one' => 'string|max:255'],
                 name: 'client_address_line_one',
             )
             ->text(
                 label: 'Client Address Line Two',
-                default: $latestInvoice?->client_address->getLineTwo(),
+                default: (string) $latestInvoice?->client_address->getLineTwo(),
                 required: true,
                 validate: ['client_address_line_two' => 'string|max:255'],
                 name: 'client_address_line_two',
             )
             ->text(
                 label: 'Client Address Line Three',
-                default: $latestInvoice?->client_address->getLineThree(),
+                default: (string) $latestInvoice?->client_address->getLineThree(),
                 required: true,
                 validate: ['client_address_line_three' => 'string|max:255'],
                 name: 'client_address_line_three',
             )
             ->text(
                 label: 'Client Address Line Four',
-                default: $latestInvoice?->client_address->getLineFour(),
+                default: (string) $latestInvoice?->client_address->getLineFour(),
                 required: true,
                 validate: ['client_address_line_four' => 'string|max:255'],
                 name: 'client_address_line_four',
             )
             ->textarea(
                 label: 'Payment Details',
-                default: $latestInvoice?->payment_details,
+                default: (string) $latestInvoice?->payment_details,
                 required: true,
                 name: 'payment_details',
             )
             ->textarea(
                 label: 'Notes',
-                default: $latestInvoice?->notes,
+                default: (string) $latestInvoice?->notes,
                 name: 'notes',
             )
             ->outro('Thank you for providing the invoice details');
