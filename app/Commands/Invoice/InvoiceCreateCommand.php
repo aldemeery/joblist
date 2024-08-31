@@ -14,6 +14,7 @@ use App\Services\InvoiceBuilder;
 use Carbon\CarbonImmutable;
 use Closure;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Pipeline;
 use Illuminate\Validation\Rule;
 use Laravel\Prompts as P;
@@ -247,8 +248,9 @@ class InvoiceCreateCommand extends Command
 
     private function getOccupancy(): Occupancy
     {
-        return Occupancy::has('user', auth()->id())
-            ->findOrFail($this->argument('occupancy'));
+        return Occupancy::whereHas('user', function (Builder $query): void {
+            $query->where('id', auth()->id());
+        })->findOrFail($this->argument('occupancy'));
     }
 
     private function invoiceForm(?Invoice $latestInvoice): FormBuilder
